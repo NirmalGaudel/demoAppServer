@@ -19,17 +19,22 @@ app.use(express.json());
 
 app.use("/auth", authRouter);
 app.use("/users", tokenValidator, userRouter);
-app.use("/category", categoryRouter);
+app.use("/category", tokenValidator, categoryRouter);
 
 app.use((req, res, next) => next(createHttpError(404, "not found")));
 
 app.use((err, req, res, next) => {
-    // console.log(err);
+    console.log(err);
     if (err.name === "SequelizeValidationError" || err.name === "SequelizeUniqueConstraintError") {
-        const errors = [];
-        err.errors.forEach(e =>
-            errors.push({ path: e.path, message: e.message, type: e.validatorKey, value: e.value })
-        );
+        const errors = {};
+        err.errors.forEach(e => {
+            errors[e.path] = {
+                path: e.path,
+                message: e.message,
+                type: e.validatorKey,
+                value: e.value,
+            };
+        });
         res.status(400).json({ message: "validation failed", errors });
     } else res.status(err.status || 500).json({ ...err });
 });
