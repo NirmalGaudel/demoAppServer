@@ -1,0 +1,7 @@
+PORT = 8000
+JWTSECRET = JWT_secret
+PGDATABASE = DBName
+PGUSER = Username
+PGPASSWORD = password
+PGHOST = localhost
+PGPORT = 5432
