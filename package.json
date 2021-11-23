@@ -4,6 +4,7 @@
   "description": "Server For demo app",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "test": "nodemon start"
   },
   "author": "Nil Kantha Gaudel",

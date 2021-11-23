@@ -12,7 +12,7 @@ function CategoryParamIdValidator() {
                 id =>
                     new Promise((resolve, reject) =>
                         Category.findOne({ where: { id } })
-                            .then(result => (result ? resolve() : reject("User Not Found")))
+                            .then(result => (result ? resolve() : reject("Category Not Found")))
                             .catch(err => reject(err))
                     )
             ),
@@ -52,7 +52,7 @@ function updateCategoryValidator() {
                     new Promise((resolve, reject) =>
                         Category.findOne({ where: { id } })
                             .then(result => {
-                                result ? resolve() : reject("User Not Found");
+                                result ? resolve() : reject("Category Not Found");
                             })
                             .catch(err => reject(err))
                     )

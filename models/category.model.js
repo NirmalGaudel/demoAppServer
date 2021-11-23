@@ -1,5 +1,6 @@
 const Sequelize = require("sequelize");
 const sequelize = require("../utils/database");
+const Event = require("./event.model");
 
 const Category = sequelize.define("category", {
     id: {
@@ -18,5 +19,7 @@ const Category = sequelize.define("category", {
         allowNull: true,
     },
 });
+
+
 
 module.exports = Category;
